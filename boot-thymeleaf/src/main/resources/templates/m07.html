@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
+</head>
+<body>
+    <h1>Link</h1>
+
+    <div>
+
+        <a href="/m06.do?seq=10">링크입니다.</a>
+        <hr>
+
+        <a th:href="'/m06.do?seq=' + ${seq}">링크입니다.</a>
+        <a th:href="|/m06.do?seq=${seq}|">링크입니다.</a>
+        <a href="/m06.do?seq=[[${seq}]]">링크입니다.</a>
+
+        <hr>
+
+        <!-- /m06.do?seq=10 -->
+        <a th:href="@{/m06.do(seq=${seq})}">링크입니다.</a>
+
+        <!-- /m06.do?seq=10&mode=add -->
+        <a th:href="@{/m06.do(seq=${seq}, mode=${mode})}">링크입니다.</a>
+
+        <hr>
+
+        <!--
+            기존 웹 > Query String
+            - m06.do?seq=10
+
+            REST > 경로 변수
+            - m06/10
+        -->
+        <a href="/m06/10">링크입니다.</a>
+
+        <a th:href="@{/m06/{seq}(seq=${seq})}">링크입니다.</a>
+
+    </div>
+
+</body>
+</html>

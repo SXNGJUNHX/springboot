@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
+</head>
+<body>
+    <h1>제어문</h1>
+
+    <!--
+    <c:if test="${num1 > 0}">
+    <div>num1은 양수입니다.</div>
+    </c:if>
+    -->
+
+    <div th:if="${num1 > 0}">num1은 양수입니다.</div>
+    <div th:if="${num1 <= 0}">num1은 양수가 아닙니다.</div>
+
+    <hr>
+
+    <div th:if="${num1 > 0}"><span th:text="${num1}"></span>은 양수입니다.</div>
+    <div th:if="${num1 > 0}" th:text="${num1} + '은 양수입니다.'"></div>
+    <div th:if="${num1 > 0}" th:text="|${num1}은 양수입니다.|"></div>
+    <div th:if="${num1 > 0}">[[${num1}]]은 양수입니다.</div>
+
+    <hr>
+
+    <div th:if="${num1 > 0}">양수 O</div>
+    <div th:unless="${num1 > 0}">양수 X</div>
+    <div th:if="${num1 <= 0}">양수 X</div>
+
+    <hr>
+
+    <div th:switch="${mode}">
+        <div th:case="add">추가하기</div>
+        <div th:case="remove">삭제하기</div>
+        <div th:case="*">기타</div>
+    </div>
+
+    <hr>
+
+    <!--
+    <c:forEach>
+    <div>이름</div>
+    </c:forEach>
+    -->
+
+    <div th:each="name : ${names}" th:text="${name}"></div>
+
+    <hr>
+
+    <ul>
+        <li th:each="name : ${names}" th:text="${name}"></li>
+    </ul>
+
+    <hr>
+
+    <ul>
+        <li th:each="name : ${names}">이름: <span th:text="${name}"></span></li>
+    </ul>
+
+    <hr>
+
+    <ul th:each="dto : ${list}">
+        <li th:text="${dto.name}"></li>
+        <li th:text="${dto.age}"></li>
+        <li th:text="${dto.address}"></li>
+    </ul>
+
+    <hr>
+
+    <ul th:each="dto : ${list}" th:object="${dto}">
+        <li th:text="*{name}"></li>
+        <li th:text="*{age}"></li>
+        <li th:text="*{address}"></li>
+    </ul>
+
+    <hr>
+
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+            <th>성별</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <!--
+            <c:forEach items=${list} var="dto" varStatus="status">
+        -->
+        <tr th:each="dto, status : ${list}">
+            <td th:text="${dto.seq}"></td>
+            <td th:text="${dto.name}"></td>
+            <td th:text="${dto.age}"></td>
+            <td th:text="${dto.address}"></td>
+            <td th:text="${dto.gender}"></td>
+            <td th:text="${status.index}"></td>
+            <td th:text="${status.count}"></td>
+            <td th:text="${status.size}"></td>
+            <td th:text="${status.even}"></td>
+            <td th:text="${status.odd}"></td>
+            <td th:text="${status.first}"></td>
+            <td th:text="${status.last}"></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <div th:each="num : ${#numbers.sequence(1, 10)}" th:text="${num}"></div>
+
+    <hr>
+
+    <!--
+        Thymeleaf Block
+        - th:block
+        - 독립적인 태그
+    -->
+    <div th:if="${num1 > 0}">양수</div>
+
+    <th:block th:if="${num1 > 0}">양수</th:block>
+
+    <th:block th:if="">
+    <div th:text="${num1}"></div>
+    </th:block>
+
+    <c:if test="">
+        <div th:text="${num1}"></div>
+    </c:if>
+
+</body>
+</html>
+
+
+
+
+
+
+

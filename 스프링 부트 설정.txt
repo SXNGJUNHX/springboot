@@ -1,0 +1,35 @@
+JDK 21
+JDK 11
+
+Spring Boot 2.X > ~ JDK 11
+Spring Boot 3.X > JDK 17 ~
+
+
+
+
+1. 워크스페이스
+- C:\class\code\springboot
+
+2. 개발툴
+- STS4(https://spring.io)
+- SpringToolSuite4.ini
+	-vm
+	C:\class\dev\jdk-17\bin\javaw.exe
+- Lombok
+
+3. JDK 17 설치
+- win+r > sysdm.cpl > 고급 > 환경변수
+	- JAVA_HOME > C:\class\dev\jdk-17
+	- Path > %JAVA_HOME%\bin 맨 위로
+- win+r > cmd > javac --version
+            > java --version
+
+
+
+
+
+
+
+
+
+

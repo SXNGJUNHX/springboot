@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
+</head>
+<body>
+<h1>List</h1>
+
+<table th:if="${addressList != null}">
+    <tr th:if="${addressList instanceof T(java.util.ArrayList)}">
+        <th colspan="5">결과: <span th:text="${addressList.size()}"></span> 행</th>
+    </tr>
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>나이</th>
+        <th>주소</th>
+        <th>성별</th>
+    </tr>
+    <tr th:each="address : ${addressList}">
+        <td th:text="${address.seq}"></td>
+        <td th:text="${address.name}"></td>
+        <td th:text="${address.age}"></td>
+        <td th:text="${address.address}"></td>
+        <td th:text="${address.gender}"></td>
+    </tr>
+</table>
+<div th:utext="${sb}"></div>
+
+<table th:if="${addressSubList != null}">
+    <tr>
+        <th colspan="5">결과: <span th:text="${addressSubList.size()}"></span> 행</th>
+    </tr>
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+    </tr>
+    <tr th:each="address : ${addressSubList}">
+        <td th:text="${address.name}"></td>
+        <td th:text="${address.age}"></td>
+    </tr>
+</table>
+
+
+<table th:if="${names != null}">
+    <tr>
+        <th colspan="5">결과: <span th:text="${names.size()}"></span> 행</th>
+    </tr>
+    <tr>
+        <th>이름</th>
+    </tr>
+    <tr th:each="name : ${names}">
+        <td th:text="${name}"></td>
+    </tr>
+</table>
+
+
+<table th:if="${customAddressList != null}">
+    <tr>
+        <th colspan="7">결과: <span th:text="${customAddressList.size()}"></span> 행</th>
+    </tr>
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>나이</th>
+        <th>주소</th>
+        <th>성별</th>
+        <th>도시</th>
+        <th>생일</th>
+    </tr>
+    <tr th:each="address : ${customAddressList}">
+        <td th:text="${address.seq}"></td>
+        <td th:text="${address.name}"></td>
+        <td th:text="${address.age}"></td>
+        <td th:text="${address.address}"></td>
+        <td th:text="${address.gender}"></td>
+        <td th:text="${address.city}"></td>
+        <td th:text="${address.birth}"></td>
+    </tr>
+</table>
+
+
+<table th:if="${joinList != null}">
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>나이</th>
+        <th>주소</th>
+        <th>성별</th>
+        <th>메모</th>
+    </tr>
+    <tr th:each="address : ${joinList}">
+        <td th:text="${address.seq}"></td>
+        <td th:text="${address.name}"></td>
+        <td th:text="${address.age}"></td>
+        <td th:text="${address.address}"></td>
+        <td th:text="${address.gender}"></td>
+        <td>
+            <ul>
+                <li th:each="memo : ${address.memo}" th:text="${memo.memo}"></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+<table th:if="${customList != null}">
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+    </tr>
+    <tr th:each="tuple : ${customList}">
+        <td th:text="${tuple.get(0, String)}"></td>
+        <td th:text="${tuple.get(1, Integer)}"></td>
+    </tr>
+</table>
+
+
+<table th:if="${addressDTOList != null}">
+    <tr>
+        <th>이름</th>
+        <th>주소</th>
+    </tr>
+    <tr th:each="address : ${addressDTOList}">
+        <td th:text="${address.name}"></td>
+        <td th:text="${address.address}"></td>
+    </tr>
+</table>
+
+
+<table th:if="${addressTuple != null}">
+    <tr>
+        <th>성별</th>
+        <th>인원수</th>
+        <th>평균나이</th>
+    </tr>
+    <tr th:each="address : ${addressTuple}">
+        <td th:text="${address.get(0, String)}"></td>
+        <td th:text="${address.get(1, Integer)}"></td>
+        <td th:text="${address.get(2, Double)}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
+

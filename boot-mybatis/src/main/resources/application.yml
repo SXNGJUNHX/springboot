@@ -1,0 +1,17 @@
+spring:
+    application:
+        name: boot-mybatis
+
+
+# DB 설정
+    datasource:
+        # driver-class-name: oracle.jdbc.driver.OracleDriver > 9i
+        driver-class-name: oracle.jdbc.OracleDriver
+        url: jdbc:oracle:thin:@localhost:1521/xe
+        username: springboot
+        password: java1234
+
+
+
+server:
+    port: 8090

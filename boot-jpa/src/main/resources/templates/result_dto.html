@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
+</head>
+<body>
+<h1>DTO</h1>
+
+<table th:if="${address != null}">
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>나이</th>
+        <th>주소</th>
+        <th>성별</th>
+    </tr>
+    <tr>
+        <td th:text="${address.seq}"></td>
+        <td th:text="${address.name}"></td>
+        <td th:text="${address.age}"></td>
+        <td th:text="${address.address}"></td>
+        <td th:text="${address.gender}"></td>
+    </tr>
+</table>
+
+
+<table th:if="${info != null}">
+    <tr>
+        <th>번호</th>
+        <th>학교</th>
+        <th>국가</th>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>주소</th>
+    </tr>
+    <tr>
+        <td th:text="${info.seq}"></td>
+        <td th:text="${info.school}"></td>
+        <td th:text="${info.country}"></td>
+        <td th:text="${info.address.name}"></td>
+        <td th:text="${info.address.age}"></td>
+        <td th:text="${info.address.gender}"></td>
+        <td th:text="${info.address.address}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
+

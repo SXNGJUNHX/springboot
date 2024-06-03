@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
+</head>
+<body>
+    <h1>Thymeleaf</h1>
+
+    <!--
+
+        Thymeleaf Standard Expression, 타임리프 표현식
+        - EL + JSTL
+
+        1. Variable Expression, 변수 표현식
+            - ${}
+            - EL 역할
+            - 컨트롤로로부터 전달된 값을 출력/사용하는 용도
+
+        2. Selection Variable Expression, 선택 변수 표현식
+            - *{}
+            - 객체/맵 프로퍼티를 출력한다.
+            - th:object 속성과 같이 사용한다.
+
+        3. Message Expression, 메시지 표현식
+
+        4. Link URL Expression, 링크 주소 표현식
+
+        5. Fragment Expression, 조각 페이지 표현식
+
+    -->
+
+    <h2>변수 표현식</h2>
+
+    <div>${num}</div>
+    <div th:text="${num}">200</div>
+    <div th:text="123">456</div>
+
+    <div th:text="${num}">숫자: </div>
+    <div th:text="'숫자: ' + ${num}"></div>
+    <div>숫자: <span th:text="${num}"></span></div>
+    <div>문자열: <span th:text="${txt}"></span></div>
+
+
+    <h2>객체 출력</h2>
+
+    <ul>
+        <li th:text="${dto}"></li>
+        <li th:text="${dto.getName()}"></li>
+        <li th:text="${dto.name}"></li>
+        <li th:text="${dto.seq}"></li>
+        <li th:text="${dto.age}"></li>
+        <li th:text="${dto.address}"></li>
+        <li th:text="${dto.gender}"></li>
+    </ul>
+    <!-- 2. 선택 변수 표현식 -->
+    <ul th:object="${dto}">
+        <li th:text="*{seq}"></li>
+        <li th:text="*{name}"></li>
+        <li th:text="*{age}"></li>
+        <li th:text="*{address}"></li>
+        <li th:text="*{gender}"></li>
+    </ul>
+
+    <div>국어: <span th:text="${map.get('kor')}"></span></div>
+    <div>영어: <span th:text="${map.eng}"></span></div>
+    <div>수학: <span th:text="${map.mat}"></span></div>
+
+    <div th:object="${map}">
+        <div>국어: <span th:text="*{kor}"></span></div>
+        <div>영어: <span th:text="*{eng}"></span></div>
+        <div>수학: <span th:text="*{mat}"></span></div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

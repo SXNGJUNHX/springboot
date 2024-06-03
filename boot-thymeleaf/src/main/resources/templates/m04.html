@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
+    <style>
+        .one { color: blue; }
+        .two { text-decoration: underline; }
+        .three { font-size: 5rem; }
+    </style>
+</head>
+<body>
+    <h1>HTML 속성 조작하기</h1>
+
+    <!--
+        *** 타임리프의 표현식들은 th:속성과 같이 사용해야 한다.
+    -->
+    <div>${txt}</div>
+    <div th:text="${txt}"></div>
+
+    <div>
+
+        <input type="text" name="num" size="${num}">
+        <br>
+        <input th:type="text" th:name="num" th:size="${num}">
+        <br>
+        <input type="text" th:value="${txt}" value="홍길동">
+    </div>
+
+    <hr>
+
+    <div class="one" th:class="two">Box</div>
+
+    <div class="one" th:attrappend="class=' two'">Box</div>
+    <div class="one" th:attrprepend="class='two '">Box</div>
+
+    <div class="one" th:classappend="three">Box</div>
+
+    <hr>
+
+    <input type="checkbox" name="cb" checked>
+    <input type="checkbox" name="cb" th:checked="true">
+    <input type="checkbox" name="cb" th:checked="${num > 0}">
+    <input type="checkbox" name="cb" th:checked="${num < 0}">
+
+    <hr>
+
+    <div style="background-color: cornflowerblue;">Box</div>
+
+    <div th:style="'background-color:' + ${color}">Box</div>
+    <div th:style="|background-color: ${color}|">Box</div>
+
+</body>
+</html>
+
+
+
+
+
+
+

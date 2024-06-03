@@ -1,0 +1,76 @@
+Spring Boot + Thymeleaf
+
+1. 프로젝트 생성
+- Generators: Spring Boot
+- Name: "boot-thymeleaf"
+- Language: Java
+- Type: Gradle - Groovy
+- Group: "com.test"
+- Artifact: "boot-thymeleaf"
+- Package name: "com.test.bootthymeleaf"
+- JDK: 17
+- Java: 17
+- Packaging: Jar
+- Dependencies:
+	- Spring Web
+	- Oracle Driver
+	- MyBatis Framework
+	- Lombok
+	- Thymeleaf
+	- Spring DevTools
+
+2. MyBatis 설정(DB 설정)
+- application.yml > datasource
+
+- "com.test.bootthymeleaf.mapper" > "AddressMapper.java"(I)
+- src/main/resource > "mapper" > "AddressMapper.xml"
+
+- src/test/java > com.test.bootthymeleaf > "MapperTests.java"
+
+
+3. Log4j2 설정
+- logback > log4j2
+
+3.1 build.gradle
+- 의존성 추가
+
+3.2 파일
+- resource > log4j2.xml
+- resource > log4jdbc.log4j2.properties
+
+3.3 application.yml
+- dataSource 설정 수정
+
+
+
+
+
+Thymeleaf
+- 템플릿 엔진
+- JSP 역할
+- 스프링 부트 > JSP 포기 > Thymeleaf 선택
+- JSP(HTML + EL + JSTL)
+
+- application.yml
+
+
+파일 생성
+- "com.test.bootthymeleaf.controller" > "ThymeleafController.java"
+- com.test.bootthymeleaf.mapper > AddressMapper.java
+- "com.test.bootthymeleaf.dto" > "AddressDTO.java"
+
+- templates > "index.html"
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Content</h1>
+    <!--/*
+        Thymeleaf Text
+        1. th:text
+            - escaped text
+            - innerText
+
+        2. th:utext
+            - unescaped text
+            - innerHTML
+
+        인라인 출력
+            - th:inline="text" (기본값)
+            - th:inline="javascript"
+            - th:inline + [[]] //escaped text
+            - th:inline + [()] //unescaped text
+
+    */-->
+
+    <div th:text="${txt1}"></div>
+    <div th:utext="${txt1}"></div>
+    <hr>
+    <div th:text="${txt2}"></div>
+    <div th:utext="${txt2}"></div>
+
+    <hr>
+
+    <div th:text="${txt1}"></div>
+    <div th:inline="text">[[${txt1}]]</div>
+    <div>[[${txt1}]]</div>
+
+    <div th:utext="${txt2}"></div>
+    <div th:inline="text">[[${txt2}]]</div>
+    <div th:inline="text">[(${txt2})]</div>
+    <div>[(${txt2})]</div>
+
+    <!-- PCDATA 조작하는 방법 -->
+    <div>이름: 홍길동</div>
+    <div>이름: <span th:text="${name}"></span></div> **
+    <div th:text="'이름: ' + ${name}"></div>
+    <div th:text="|이름: ${name}|"></div>
+    <div th:inline="text">이름: [[${name}]]</div>
+    <div>이름: [[${name}]]</div> **
+
+    <hr>
+
+    <div id="list"></div>
+
+    <!-- 타임리프 표현식을 사용해서 자바스크립트 조작 -->
+    <script>
+        //let name1 = '${name}';
+        //let name1 = [[${name}]];
+        let name1 = '[[${name}]]';
+        let num1 = [[${num}]];
+        let dto1 = '[[${dto}]]';
+        let map1 = '[[${map}]]';
+        let names1 = '[[${names}]]';
+        let list1 = '[[${list}]]';
+    </script>
+    <script th:inline="javascript">
+        let name2 = [[${name}]];
+        let num2 = [[${num}]];
+        let dto2 = [[${dto}]];
+        let map2 = [[${map}]];
+        let names2 = [[${names}]];
+        let list2 = [[${list}]];
+
+        list2.forEach(item => {
+            document.getElementById("list").innerHTML += `
+                <div>${item.name} - ${item.age} - ${item.address}</div>
+            `;
+        });
+
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

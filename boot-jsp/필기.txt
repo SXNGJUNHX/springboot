@@ -1,0 +1,43 @@
+Spring Boot + JSP
+
+프로젝트 생성
+- Name: "boot-jsp"
+- Language: Java
+- Type: Gradle - Groovy
+- Group: "com.test"
+- Artifact: "boot-jsp"
+- Package name: "com.test.bootjsp"
+- JDK: 17
+- Java: 17
+- Packaging: War(***)
+- Dependencies:
+	- Spring Web
+	- Lombok
+
+
+JSP 설정
+1. build.gradle(pom.xml)
+    - 의존성 정의 > configuration들..
+    a. compileOnly > 컴파일시에만 사용. 빌드 시 jar에 포함하지 말것 > 빌드 포함(X) > 실행 파일 용량 줄이기
+    b. runtimeOnly > 런타임에만 사용. 컬펌일에는 필요없음. 코드 작성 시 참조 불가능
+    c. annotationProcessor > 어노테이션 프로세서 사용하는 라이브러리
+    d. implementation > 컴파일 사용 + 런타임 사용 (***)
+    e. testCompileOnly > 테스트 코드 컴파일할 때만 사용
+    f. testRuntimeOnly > 테스트 코드 런타임할 때만 사용
+    g. testImplementation > 테스트 코드 컴파일 + 런타임 사용
+    h. developmentOnly > 개발때만 사용 + 배포할 때 제외
+
+2. application.yml
+- JSP 설정
+
+3. 파일 생성
+- "com.test.bootjsp.controller" > "TestController.java"
+- src/main/webapp/WEB-INF/views > "test.jsp"
+- static > "test.html"
+
+
+
+
+
+
+

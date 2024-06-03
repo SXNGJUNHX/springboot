@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
+</head>
+<body>
+    <h1>연산자</h1>
+
+    <!--
+        타임리프 상수/리터럴
+        - Text: 'hong', 'test', '100'
+        - Number: 10, 123, 3.14
+        - Boolean: true, false
+        - Null: null
+    -->
+    <div>hong</div>
+    <div th:text="hong"></div>
+    <div th:text="'hong'">***</div>
+    <div th:text="${'hong'}">***</div>
+    <div th:text="${hong}">비권장</div>
+
+    <!--
+        타임리프 연산자
+        - 산술 연산자 > 동일
+        - 비교 연산자 > 동일
+        - 논리 연산자 > 동일
+        - 삼항 연산자 > 동일
+        - 문자열 연산자 > 동일 + 추가
+    -->
+
+    <div>10 + 3 = 13</div>
+    <div><span th:text="${a}"></span> + <span th:text="${b}"></span>
+        = <span th:text="${a+b}"></span></div>
+
+    <div th:text="'10 + 3 = 13'"></div>
+    <div th:text="${a + ' + ' + b + ' = ' + (a + b)}"></div>
+    <div th:text="${a} + ' + ' + ${b} + ' = ' + ${a + b}"></div>
+
+    <div th:text="'${a} + ${b} = ${a+b}'"></div>
+    <div th:text="|${a} + ${b} = ${a+b}|"></div>
+
+    <hr>
+
+    <div th:text="${a + b}"></div>
+    <div th:text="${a} + ${b}"></div>
+    <div th:text="${a} - ${b}"></div>
+    <div th:text="${a} * ${b}"></div>
+    <div th:text="${a} / ${b}"></div>
+    <div th:text="${a} % ${b}"></div>
+
+    <hr>
+
+    <div th:text="${a} > ${b}"></div>
+    <div th:text="${a} >= ${b}"></div>
+    <div th:text="${a} < ${b}"></div>
+    <div th:text="${a} <= ${b}"></div>
+    <div th:text="${a} == ${b}"></div>
+    <div th:text="${a} != ${b}"></div>
+
+    <div th:text="${a} gt ${b}"></div>
+
+    <hr>
+
+    <div th:text="true and true"></div>
+    <div th:text="true or false"></div>
+
+    <hr>
+
+    <div th:text="${a} > 0 ? '양수' : '양수아님'"></div>
+    <div th:text="${a} > 0 ? '양수'"></div>
+    <div th:text="${a} < 0 ? '양수'"></div>
+    <div th:text="${a} > 0 ?: '양수아님'"></div>
+
+    <!--/*
+        <div th:text="${문자열} ?: '대체'"></div>
+    */-->
+
+
+</body>
+</html>

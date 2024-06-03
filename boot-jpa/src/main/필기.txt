@@ -1,0 +1,56 @@
+Spring Boot + JPA
+
+프로젝트 생성
+- Generators: Spring Boot
+- Name: "boot-jap"
+- Language: Java
+- Type: Gradle - Groovy
+- Group: "com.test"
+- Artifact: "boot-jpa"
+- Package name: "com.test.bootjpa"
+- JDK: 17
+- Java: 17
+- Packaging: Jar
+- Dependencies:
+	- Spring Web
+	- Oracle Driver
+	- Lombok
+	- Thymeleaf
+	- DevTools
+	- Spring Data JPA
+
+
+ORM
+- 관계형 데이터베이스 데이터 <-> 객체 지향 프로그래밍 데이터
+
+
+테스트
+- "com.test.bootjpa.entity" > "Address.java"
+- "com.test.bootjpa.repository" > "AddressRepository.java"
+
+- src/test/java > com.test.bootjpa > "AddressRepositoryTests.java"
+
+
+
+파일 생성
+- "com.test.bootjpa.controller" > "AddressController.java"
+- "com.test.bootjpa.dto" > "AddressDTO.java"
+
+
+추가 생성
+- com.test.bootjpa.entity > "Info.java"
+                          > "Memo.java"
+- com.test.bootjpa.repository > "InfoRepository.java"(I)
+                              > "MemoRepository.java"(I)
+
+
+
+
+
+
+
+
+
+
+
+
