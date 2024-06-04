@@ -1,0 +1,123 @@
+Spring Boot + Security
+
+
+프로젝트 생성
+- Generators: Spring Boot
+- Name: "boot-security"
+- Language: Java
+- Type: Gradle - Groovy
+- Group: "com.test"
+- Artifact: "boot-security"
+- Package name: "com.test.bootsecurity"
+- JDK: 17
+- Java: 17
+- Packaging: Jar
+- Dependencies:
+	- Spring Web
+	- Oracle Driver
+	- Spring Data JPA
+	- Lombok
+	- Thymeleaf
+	- DevTools
+	- Spring Security
+
+
+
+데이터베이스 의존성
+- build.gradle > 주석 처리
+
+
+
+
+
+
+
+
+
+서버 포트
+- application.yml
+
+
+
+
+시작 페이지 생성
+- "com.test.bootsecurity.controller" > "MainController.java"
+- templates > "index.html"
+
+
+
+
+
+Security Config 클래스 생성하기
+- security-config.xml 역할
+- "com.test.bootsecurity.config" > "SecurityConfig.java"
+
+
+
+
+추가 페이지 생성
+- com.test.bootsecurity.controller > "AdminController.java"
+- templates > "admin.html"
+
+
+
+
+커스텀 로그인
+- com.test.bootsecurity.controller > "AuthController.java"
+- templates > "login.html"
+
+- SecurityConfig.java > 커스텀 로그인 등록하기
+
+
+
+
+
+
+
+
+BCrypt 암호화 > PasswordEncoder 생성
+- SecurityConfig.java > BCryptPasswordEnder 빈 등록하기
+
+
+
+
+
+
+데이터베이스 연결하기
+- build.gradle > 주석 해제
+- application.yml > 데이터소스 설정
+
+
+
+
+
+
+회원 가입
+- member 테이블 생성
+- com.test.bootsecurity.controller > "MemberController.java"
+- "com.test.bootsecurity.dto" > "MemberDTO.java"
+- "com.test.bootsecurity.service" > "MemberService.java"
+- "com.test.bootsecurity.entity" > "Member.java"
+- "com.test.bootsecurity.repository" > "MemberRepository.java"(I)
+- templates > "join.html"
+
+
+
+
+
+DB 기반 로그인
+- 시큐리티 > 데이터베이스 접근 + 인증 > 세션 발급
+- com.test.bootsecurity.service > "CustomUserDetailsService.java"
+- com.test.bootsecurity.dto > "CustomUserDetails.java"
+
+
+
+
+
+
+
+
+
+
+
+

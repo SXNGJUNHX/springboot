@@ -1,18 +1,26 @@
 package com.test.bootjpa.repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.test.bootjpa.dto.AddressDTO;
 import com.test.bootjpa.entity.Address;
+import com.test.bootjpa.entity.Info;
+import com.test.bootjpa.entity.QAddress;
 import lombok.RequiredArgsConstructor;
 import org.springframework.expression.spel.ast.Projection;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.querydsl.jpa.JPAExpressions.*;
 import static com.test.bootjpa.entity.QAddress.address1;
+import static com.test.bootjpa.entity.QInfo.info;
+import static com.test.bootjpa.entity.QMemo.memo1;
 
 @Repository
 @RequiredArgsConstructor
@@ -213,6 +221,133 @@ public class CustomAddressRepositoryImpl implements CustomAddressRepository {
                 .having(address1.age.avg().goe(4.5))
                 .fetch()
                 ;
+    }
+
+    @Override
+    public List<Info> findAddressJoinInfo() {
+
+        /*
+        조인
+        - join()        : inner join
+        - innerJoin()   : inner join
+        - leftJoin()    : left outer join
+        - rightJoin()() : right outer join
+
+         */
+        return jpaQueryFactory
+                .selectFrom(info) // 자식 테이블
+                .join(info.address, address1) // join(연관관계, 부모 테이블)
+                .fetch()
+                ;
+    }
+
+    @Override
+    public List<Address> findAddressJoinMemo() {
+
+        //- inner join
+        //- left outer join
+
+//        return jpaQueryFactory
+//                .selectFrom(address1)
+//                .join(address1.memo, memo1)
+//                .fetch()
+//                ;
+
+        return jpaQueryFactory
+                .selectFrom(address1)
+                .leftJoin(address1.memo, memo1)
+                .fetch()
+                ;
+    }
+
+    @Override
+    public List<Info> findAddressFullJoin() {
+
+
+
+        return jpaQueryFactory
+                .selectFrom(info)
+                .join(info.address, address1)
+                .leftJoin(address1.memo, memo1)
+                .orderBy(address1.seq.asc())
+                .fetch()
+                ;
+    }
+
+    @Override
+    public List<Address> findAddressByMaxAge() {
+
+        QAddress subAddress = QAddress.address1;
+
+//        return jpaQueryFactory
+//                .selectFrom(address1)
+//                .where(address1.age.eq(
+//                        JPAExpressions
+//                                .select(subAddress.age.max())
+//                                .from(subAddress)
+//                ))
+//                .fetch()
+//                ;
+
+        return jpaQueryFactory
+                .selectFrom(address1)
+                .where(address1.age.eq(
+                        select(subAddress.age.max())
+                                .from(subAddress)
+                ))
+                .fetch()
+                ;
+    }
+
+    @Override
+    public List<Tuple> findAddressByAvgAge() {
+
+        QAddress subAddress = new QAddress(address1);
+
+        return jpaQueryFactory
+                .select(
+                        address1.name,
+                        address1.age,
+                        JPAExpressions.select(subAddress.age.avg()).from(subAddress)
+                )
+                .from(address1)
+                .fetch()
+                ;
+    }
+
+    @Override
+    public List<Address> findAddressByMultiParameter(String gender, Integer age) {
+
+        BooleanBuilder builder = new BooleanBuilder();
+
+
+//        if(gender!=null){
+//            builder.and(address1.gender.eq(gender));
+//        }
+//        if(age!=null){
+//            builder.and(address1.age.eq(age));
+//        }
+//
+//        return jpaQueryFactory
+//                .selectFrom(address1)
+//                .where(builder)
+//                .fetch()
+//                ;
+
+        return jpaQueryFactory
+                .selectFrom(address1)
+                //.where(genderEq(gender).and(ageEq(age)))
+                .where(genderEq(gender), ageEq(age))
+                .fetch()
+                ;
+    }
+
+    private BooleanExpression genderEq(String gender) {
+        return gender != null ? address1.gender.eq(gender) : null;
+    }
+
+    private BooleanExpression ageEq(Integer age) {
+        return age != null ? address1.age.eq(age) : null;
     }
 
 

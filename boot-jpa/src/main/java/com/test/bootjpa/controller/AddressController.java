@@ -697,7 +697,91 @@ public class AddressController {
         return "result_list";
     }
 
+    @GetMapping("/m33.do")
+    public String m33(Model model) {
 
+        //Join
+        //- 1:1
+        //- tblAddress:tblInfo
+
+        List<Info> addressInfoList = customAddressRepository.findAddressJoinInfo();
+
+        model.addAttribute("addressInfoList", addressInfoList);
+
+
+        return "result_list";
+    }
+
+    @GetMapping("/m34.do")
+    public String m34(Model model) {
+
+        //Join
+        //- 1:N
+
+        List<Address> joinList = customAddressRepository.findAddressJoinMemo();
+
+        model.addAttribute("joinList", joinList);
+
+
+        return "result_list";
+    }
+
+    @GetMapping("/m35.do")
+    public String m35(Model model) {
+
+        //tblMemo : tblAddress : tblInfo
+        List<Info> addressFullList = customAddressRepository.findAddressFullJoin();
+
+        model.addAttribute("addressFullList", addressFullList);
+
+        return "result_list";
+    }
+
+    @GetMapping("/m36.do")
+    public String m36(Model model) {
+
+        //서브 쿼리 > Query DSL
+        //- where절(O)
+        //- select절(O)
+        //- from절(X)
+
+        //select * from tblAddress where age = (select max(age) from tblAddress);
+
+        List<Address> addressList = customAddressRepository.findAddressByMaxAge();
+
+        model.addAttribute("addressList", addressList);
+
+        return "result_list";
+    }
+
+    @GetMapping("/m37.do")
+    public String m37(Model model) {
+
+        //select name, age, 평균나이 from tblAddress
+        List<Tuple> addressAgeList = customAddressRepository.findAddressByAvgAge();
+
+        model.addAttribute("addressAgeList", addressAgeList);
+
+        return "result_list";
+    }
+
+    @GetMapping("/m38.do")
+    public String m38(Model model, @RequestParam(name="gender", required = false) String gender, @RequestParam(name="age", required = false) Integer age) {
+
+        //동적 쿼리
+        //- m38.do > select * from tblAddress
+        //- m38.do?gender=m > select * from tblAddress where gender = 'm'
+        //- m38.do?age=3 > select * from tblAddress where age = 3
+        //- m38.do?gender=m&age=3 > select * from tblAddress where gender = 'm' and age = 3
+
+        List<Address> addressList = customAddressRepository.findAddressByMultiParameter(gender, age);
+
+        model.addAttribute("addressList", addressList);
+
+        return "result_list";
+    }
+    
+    
     /*
     @GetMapping("/m05.do")
     public String m05(Model model) {
@@ -708,3 +792,16 @@ public class AddressController {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
