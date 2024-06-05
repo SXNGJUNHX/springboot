@@ -1,4 +1,4 @@
-Spring Boot + Security
+Spring Boot + Security + Session
 
 
 프로젝트 생성

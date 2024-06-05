@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,7 +9,38 @@
     <link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
 </head>
 <body>
-    <h1>Security <small>Index</small></h1>
+    <div th:replace="~{inc/header :: menu}"></div>
+
+    <h2>Index</h2>
+
+    <!--/*
+    조각 페이지
+    1. th:insert="~{경로}"
+    2. th:replace="~{경로}"
+    */-->
+
+    <!--/*
+    <div th:insert="~{inc/header.html}"></divth:insert></div>
+    <div th:insert="~{inc/header}"></div>
+    <hr>
+    <div th:replace="~{inc/header :: header}"></div>
+    <div th:replace="~{inc/header :: footer}"></div>
+    */-->
+
+    <!-- username(아이디) -->
+    <div sec:authentication="name"></div>
+
+    <!-- MemberDTO, Member -->
+    <div sec:authentication="principal"></div>
+
+    <!-- ROLE -->
+    <!--/*
+    <div sec:authentication="principal.authorities"></div>
+    */-->
+
+    <div sec:authorize="isAnonymous()">익명 사용자</div>
+    <div sec:authorize="isAuthenticated()">인증 사용자</div>
+
 
 </body>
 </html>

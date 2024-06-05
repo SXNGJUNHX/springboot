@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+    <!-- templates > inc > header.html -->
+    <h1 th:fragment="header">조각 페이지</h1>
+    <h1 th:fragment="footer">조각 페이지</h1>
+
+    <header th:fragment="menu">
+        <h1>Security</h1>
+        <ul>
+            <li><a href="/">Index</a></li>
+
+            <th:block sec:authorize="isAnonymous()">
+            <li><a href="/join">Join</a></li>
+            <li><a href="/login">Login</a></li>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated()">
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/my">My</a></li>
+
+            <li sec:authorize="hasRole('ADMIN')"><a href="/admin">Admin</a></li>
+            </th:block>
+        </ul>
+    </header>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

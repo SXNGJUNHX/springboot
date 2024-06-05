@@ -33,11 +33,13 @@ public class SecurityConfig {
 //                .requestMatchers("/loginok").permitAll()
                 .requestMatchers("/", "/login").permitAll()
                 .requestMatchers("/join", "/joinok").permitAll()
+                .requestMatchers("/admin").hasRole("ADMIN") // 특정 권한
+                .requestMatchers("/my/**").hasAnyRole("MEMBER", "ADMIN")
                 .anyRequest().authenticated() //나머지 경로 > 인증 사용자에게만 허가
         );
 
         //개발 시 > CRSF 비활성
-        http.csrf(auth -> auth.disable());
+        //http.csrf(auth -> auth.disable());
 
         //커스텀 로그인 페이지
         http.formLogin(auth -> auth
@@ -45,9 +47,15 @@ public class SecurityConfig {
                 .loginProcessingUrl("/loginok").permitAll()
         );
 
+        //로그아웃
+        http.logout(auth -> auth.logoutUrl("/logout")
+                                .logoutSuccessUrl("/")
+        );
+
         return http.build();
     }
 
+    
 }
 
 

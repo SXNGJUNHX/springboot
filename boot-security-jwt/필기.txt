@@ -1,0 +1,75 @@
+Spring Security + JWT
+- JWT 기반 > 인증 + 허가 구현
+- 나머지 동일
+- REST API
+
+프로젝트 생성
+- Generators: Spring Boot
+- Name: "boot-security-jwt"
+- Language: Java
+- Type: Gradle - Groovy
+- Group: "com.test"
+- Artifact: "boot-jwt"
+- Package name: "com.test.jwt"
+- JDK: 17
+- Java: 17
+- Packaging: Jar
+- Dependencies:
+	- Spring Web
+	- Oracle Driver
+	- Spring Data JPA
+	- Lombok
+	- Thymeleaf
+	- DevTools
+	- Spring Security
+
+
+데이터베이스 주석
+- build.gradle
+
+
+JWT 의존성 추가
+- build.gradle
+
+
+페이지 생성
+- "com.test.jwt.controller" > "MainController.java"
+- "com.test.jwt.controller" > "AdminController.java"
+- "com.test.jwt.controller" > "MemberController.java"
+
+
+시큐리티 설정 파일
+- "com.test.jwt.config" > "SecurityConfig.java"
+
+
+
+회원 설정
+- "com.test.jwt.entity" > "Member.java"
+- "com.test.jwt.repository" > "MemberRepository.java"(I)
+
+
+회원 가입
+- MemberController.java
+- "com.test.jwt.service" > "MemberService.java"
+- "com.test.jwt.dto" > "MemberDTO.java"
+
+
+로그인
+- "com.test.jwt.auth" > "LoginFilter.java"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
