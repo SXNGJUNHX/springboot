@@ -1,5 +1,7 @@
 package com.test.jwt.config;
 
+import com.test.jwt.auth.JWTFilter;
+import com.test.jwt.auth.JWTUtil;
 import com.test.jwt.auth.LoginFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final AuthenticationConfiguration authenticationConfiguration;
+    private final JWTUtil jwtUtil;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -52,7 +55,13 @@ public class SecurityConfig {
 
         //LoginFilter 등록
         //http.addFilter(new LoginFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration)), UsernamePasswordAuthenticationFilter.class);
+        //http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration)), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class);
+
+        
+        //JWT 필터 등록
+        http.addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+
 
         return http.build();
     }

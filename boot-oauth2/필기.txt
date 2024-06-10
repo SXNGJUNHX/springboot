@@ -1,0 +1,59 @@
+
+Spring OAuth2 Client
+
+
+OAuth 2.0
+- 인증 프로토콜
+- 제 3자 애플리케이션(네이버, 구글, 카카오 등)이 사용자를 대신해서 HTTP 서비스를 이용할 수 있는 권한을 부여하는 기능을 제공한다.
+
+
+
+
+1. 새 프로젝트
+- name > "boot-oauth2"
+- Language > java
+- Type > Gradle - Groovy
+- Group > "com.test"
+- Artifact > "boot-oauth2"
+- Package name > "com.test.oauth2"
+- JDK > 17
+- Packaging > Jar
+- 의존성
+    - Spring Web
+    - Lombok
+    - Thymeleaf
+    - Spring Security
+    - OAuth2 Client
+    - Spring Data JPA
+    - Oracle Driver
+
+
+
+2. 데이터베이스 의존성 주석
+- build.gradle
+
+
+
+
+3. 파일 생성
+- "com.test.oauth2.controller" > "MainController.java"
+                               > "MyController.java"
+- templates > "index.html"
+            > "my.html"
+- templates > "inc" > "header.html"
+
+
+
+
+
+4. 시큐리티 설정
+- "com.test.oauth2.config" > "SecurityConfig.java"
+
+
+
+
+
+
+
+
+

@@ -24,7 +24,13 @@ spring:
                 format_sql: true #이쁘게
 
 
+    # 암호화 키
+    jwt:
+        secret: 2ad71f1194fc7865ebb5e6db1a0545e64978bc134e1102d58a89d7e29834fbef
+
+
+
 
 
 server:
-    port: 8090
+    port: 8080

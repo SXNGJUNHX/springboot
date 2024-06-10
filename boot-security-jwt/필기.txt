@@ -59,6 +59,23 @@ JWT 의존성 추가
 
 
 
+DB 기반 + 로그인 연동
+- com.test.jwt.repository > MemberRepository.java > 메소드 추가
+- com.test.jwt.service > "CustomUserDetailsService.java"
+- com.test.jwt.dto > "CustomUserDetails.java"
+
+
+JWT 발급
+- 로그인 > 성공 > JWT 발급
+-  com.test.jwt.auth > "JWTUtil.java"
+
+
+
+JWT 검증
+- com.test.jwt.auth > "JWTFilter.java"
+
+
+
 
 
 
