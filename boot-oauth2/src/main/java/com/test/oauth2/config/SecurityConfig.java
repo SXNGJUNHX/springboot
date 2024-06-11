@@ -1,16 +1,21 @@
 package com.test.oauth2.config;
 
+import com.test.oauth2.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final CustomOAuth2UserService customOAuth2UserService;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -32,6 +37,15 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
         );
 
+
+        http.oauth2Login(auth -> auth
+                .loginPage("/login")
+                .userInfoEndpoint(config -> config.userService(customOAuth2UserService))
+        );
+
+//        http.oauth2Login(auth -> auth
+//                .userInfoEndpoint(config -> config.userService(customOAuth2UserService))
+//        );
 
         return http.build();
     }

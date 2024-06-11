@@ -14,12 +14,11 @@
 
     <div th:replace="~{inc/header :: menu}"></div>
 
-    <h2>My</h2>
+    <h2>Login</h2>
 
     <div>
-        <div th:text="${username}"></div>
-        <div th:text="${role}"></div>
-        <div th:text="${authentication}"></div>
+        <a href="/oauth2/authorization/naver">네이버 로그인</a>
+        <a href="/oauth2/authorization/google">구글 로그인</a>
     </div>
 
 </body>
